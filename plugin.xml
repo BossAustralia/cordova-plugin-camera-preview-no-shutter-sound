@@ -34,7 +34,7 @@
     </config-file>
 
 
-    <edit-file target="AndroidManifest.xml" parent="/manifest" mode="merge">
+    <edit-file target="AndroidManifest.xml" parent="/manifest" mode="overwrite">
       <uses-feature android:name="android.hardware.camera" android:required="true"/>
       <uses-feature android:name="android.hardware.camera.autofocus" />
       <uses-permission android:name="android.permission.CAMERA" />
