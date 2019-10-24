@@ -593,6 +593,11 @@ public class CameraActivity extends Fragment {
     return output;
   }
   public void takeSnapshot(final int quality) {
+    if(mCamera == null)
+    {
+      setDefaultCameraId();
+      mCamera = Camera.open(defaultCameraId);
+    }
     mCamera.setPreviewCallback(new Camera.PreviewCallback() {
       @Override
       public void onPreviewFrame(byte[] bytes, Camera camera) {
@@ -635,7 +640,11 @@ public class CameraActivity extends Fragment {
       }
 
       canTakePicture = false;
-
+      if(mCamera == null)
+      {
+        setDefaultCameraId();
+        mCamera = Camera.open(defaultCameraId);
+      }
       new Thread() {
         public void run() {
           Camera.Parameters params = mCamera.getParameters();
