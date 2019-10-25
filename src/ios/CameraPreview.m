@@ -443,7 +443,7 @@
 
   if (self.cameraRenderController != NULL) {
      self.onPictureTakenHandlerId = command.callbackId;
-      if(command.arguments[0].count == 3){  
+      if(command.arguments.count == 3){  
           CGFloat width = (CGFloat)[command.arguments[0] floatValue];
           CGFloat height = (CGFloat)[command.arguments[1] floatValue];
           CGFloat quality = (CGFloat)[command.arguments[2] floatValue] / 100.0f;
