@@ -196,6 +196,11 @@ public class CameraPreview extends CordovaPlugin implements CameraActivity.Camer
     if(this.hasView(callbackContext) == false){
       return false;
     }
+    
+     if(fragment == null) {
+      callbackContext.error("No preview");
+      return false;
+    }
 
     if(fragment.getCamera() == null) {
       callbackContext.error("No Camera");
@@ -322,7 +327,11 @@ public class CameraPreview extends CordovaPlugin implements CameraActivity.Camer
     }
 
     takeSnapshotCallbackContext = callbackContext;
-
+    
+     if(fragment == null) {
+      return false;
+    }
+    
     fragment.takeSnapshot(quality);
     return true;
   }
@@ -349,7 +358,11 @@ public class CameraPreview extends CordovaPlugin implements CameraActivity.Camer
     if(this.hasView(callbackContext) == false){
       return true;
     }
-
+    
+    if(fragment == null) {
+      return false;
+    }
+    
     takePictureCallbackContext = callbackContext;
 
     fragment.takePicture(width, height, quality);
@@ -377,6 +390,10 @@ public class CameraPreview extends CordovaPlugin implements CameraActivity.Camer
     if(this.hasCamera(callbackContext) == false){
       return true;
     }
+    
+    if(fragment == null) {
+      return false;
+    }
 
     Camera camera = fragment.getCamera();
     Camera.Parameters params = camera.getParameters();
@@ -399,7 +416,10 @@ public class CameraPreview extends CordovaPlugin implements CameraActivity.Camer
       if(this.hasCamera(callbackContext) == false){
         return true;
       }
-
+    
+    if(fragment == null) {
+      return false;
+    }
       Camera camera = fragment.getCamera();
       Camera.Parameters params = camera.getParameters();
       List<String> supportedColors;
@@ -420,6 +440,10 @@ public class CameraPreview extends CordovaPlugin implements CameraActivity.Camer
     if(this.hasCamera(callbackContext) == false){
       return true;
     }
+    
+    if(fragment == null) {
+      return false;
+    }
 
     Camera camera = fragment.getCamera();
     Camera.Parameters params = camera.getParameters();
@@ -439,7 +463,11 @@ public class CameraPreview extends CordovaPlugin implements CameraActivity.Camer
     if(this.hasCamera(callbackContext) == false){
       return true;
     }
-
+    
+    if(fragment == null) {
+      return false;
+    }
+    
     Camera camera = fragment.getCamera();
     Camera.Parameters params = camera.getParameters();
 
@@ -574,6 +602,10 @@ public class CameraPreview extends CordovaPlugin implements CameraActivity.Camer
   private boolean getWhiteBalanceMode(CallbackContext callbackContext) {
     if(this.hasCamera(callbackContext) == false){
       return true;
+    }
+    
+   if(fragment == null) {
+      return false;
     }
 
     Camera camera = fragment.getCamera();
