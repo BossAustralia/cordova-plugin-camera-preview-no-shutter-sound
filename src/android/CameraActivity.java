@@ -478,6 +478,11 @@ public class CameraActivity extends Fragment {
         Log.d(TAG, "CameraPreview onPictureTaken general exception");
       } finally {
         canTakePicture = true;
+         if(mCamera == null)
+        {
+          setDefaultCameraId();
+          mCamera = Camera.open(defaultCameraId);
+        }
         mCamera.startPreview();
       }
     }
@@ -593,7 +598,7 @@ public class CameraActivity extends Fragment {
     return output;
   }
   public void takeSnapshot(final int quality) {
-    if(mCamera == null)
+     if(mCamera == null)
     {
       setDefaultCameraId();
       mCamera = Camera.open(defaultCameraId);
@@ -638,13 +643,15 @@ public class CameraActivity extends Fragment {
       if(!canTakePicture){
         return;
       }
+    
+    if(mCamera == null)
+    {
+      setDefaultCameraId();
+      mCamera = Camera.open(defaultCameraId);
+    }
 
       canTakePicture = false;
-      if(mCamera == null)
-      {
-        setDefaultCameraId();
-        mCamera = Camera.open(defaultCameraId);
-      }
+
       new Thread() {
         public void run() {
           Camera.Parameters params = mCamera.getParameters();
